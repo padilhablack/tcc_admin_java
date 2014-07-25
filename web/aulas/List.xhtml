@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAulasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAulasEmpty}" rendered="#{aulasController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{aulasController.items.rowCount > 0}">
+                    <h:outputText value="#{aulasController.pagination.pageFirstItem + 1}..#{aulasController.pagination.pageLastItem + 1}/#{aulasController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{aulasController.previous}" value="#{bundle.Previous} #{aulasController.pagination.pageSize}" rendered="#{aulasController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{aulasController.next}" value="#{bundle.Next} #{aulasController.pagination.pageSize}" rendered="#{aulasController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{aulasController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idAulas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAulas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_data}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.data}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_descricao}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descricao}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_presenca}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.presenca}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_falta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.falta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idTurma}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTurma}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idProfessor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProfessor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idPeriodo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idDisciplina}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDisciplina}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idCurso}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCurso}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAulasTitle_idAluno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAluno}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{aulasController.prepareView}" value="#{bundle.ListAulasViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{aulasController.prepareEdit}" value="#{bundle.ListAulasEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{aulasController.destroy}" value="#{bundle.ListAulasDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{aulasController.prepareCreate}" value="#{bundle.ListAulasCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAulasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

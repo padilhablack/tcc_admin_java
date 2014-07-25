@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewFinanceiroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_ano}"/>
+                    <h:outputText value="#{financeiroController.selected.ano}" title="#{bundle.ViewFinanceiroTitle_ano}"/>
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_mes}"/>
+                    <h:outputText value="#{financeiroController.selected.mes}" title="#{bundle.ViewFinanceiroTitle_mes}"/>
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_valor}"/>
+                    <h:outputText value="#{financeiroController.selected.valor}" title="#{bundle.ViewFinanceiroTitle_valor}"/>
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_vencimento}"/>
+                    <h:outputText value="#{financeiroController.selected.vencimento}" title="#{bundle.ViewFinanceiroTitle_vencimento}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_status}"/>
+                    <h:outputText value="#{financeiroController.selected.status}" title="#{bundle.ViewFinanceiroTitle_status}"/>
+                    <h:outputText value="#{bundle.ViewFinanceiroLabel_idAluno}"/>
+                    <h:outputText value="#{financeiroController.selected.idAluno}" title="#{bundle.ViewFinanceiroTitle_idAluno}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{financeiroController.destroyAndView}" value="#{bundle.ViewFinanceiroDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewFinanceiroEditLink}"/>
+                <br />
+                <h:commandLink action="#{financeiroController.prepareCreate}" value="#{bundle.ViewFinanceiroCreateLink}" />
+                <br />
+                <h:commandLink action="#{financeiroController.prepareList}" value="#{bundle.ViewFinanceiroShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewFinanceiroIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

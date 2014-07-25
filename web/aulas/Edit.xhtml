@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAulasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idAulas}" for="idAulas" />
+                    <h:inputText id="idAulas" value="#{aulasController.selected.idAulas}" title="#{bundle.EditAulasTitle_idAulas}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idAulas}"/>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_data}" for="data" />
+                    <h:inputText id="data" value="#{aulasController.selected.data}" title="#{bundle.EditAulasTitle_data}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_data}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_descricao}" for="descricao" />
+                    <h:inputText id="descricao" value="#{aulasController.selected.descricao}" title="#{bundle.EditAulasTitle_descricao}" />
+                    <h:outputLabel value="#{bundle.EditAulasLabel_presenca}" for="presenca" />
+                    <h:inputText id="presenca" value="#{aulasController.selected.presenca}" title="#{bundle.EditAulasTitle_presenca}" />
+                    <h:outputLabel value="#{bundle.EditAulasLabel_falta}" for="falta" />
+                    <h:inputText id="falta" value="#{aulasController.selected.falta}" title="#{bundle.EditAulasTitle_falta}" />
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idTurma}" for="idTurma" />
+                    <h:selectOneMenu id="idTurma" value="#{aulasController.selected.idTurma}" title="#{bundle.EditAulasTitle_idTurma}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idTurma}">
+                        <f:selectItems value="#{turmaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idProfessor}" for="idProfessor" />
+                    <h:selectOneMenu id="idProfessor" value="#{aulasController.selected.idProfessor}" title="#{bundle.EditAulasTitle_idProfessor}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idProfessor}">
+                        <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idPeriodo}" for="idPeriodo" />
+                    <h:selectOneMenu id="idPeriodo" value="#{aulasController.selected.idPeriodo}" title="#{bundle.EditAulasTitle_idPeriodo}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idPeriodo}">
+                        <f:selectItems value="#{periodoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idDisciplina}" for="idDisciplina" />
+                    <h:selectOneMenu id="idDisciplina" value="#{aulasController.selected.idDisciplina}" title="#{bundle.EditAulasTitle_idDisciplina}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idDisciplina}">
+                        <f:selectItems value="#{disciplinaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idCurso}" for="idCurso" />
+                    <h:selectOneMenu id="idCurso" value="#{aulasController.selected.idCurso}" title="#{bundle.EditAulasTitle_idCurso}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idCurso}">
+                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAulasLabel_idAluno}" for="idAluno" />
+                    <h:selectOneMenu id="idAluno" value="#{aulasController.selected.idAluno}" title="#{bundle.EditAulasTitle_idAluno}" required="true" requiredMessage="#{bundle.EditAulasRequiredMessage_idAluno}">
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{aulasController.update}" value="#{bundle.EditAulasSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAulasViewLink}"/>
+                <br />
+                <h:commandLink action="#{aulasController.prepareList}" value="#{bundle.EditAulasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAulasIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

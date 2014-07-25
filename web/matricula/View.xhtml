@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMatriculaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMatriculaLabel_status}"/>
+                    <h:outputText value="#{matriculaController.selected.status}" title="#{bundle.ViewMatriculaTitle_status}"/>
+                     <h:outputText value="#{bundle.ViewMatriculaLabel_idTurma}"/>
+                    <h:outputText value="#{matriculaController.selected.idTurma}" title="#{bundle.ViewMatriculaTitle_idTurma}"/>
+                    <h:outputText value="#{bundle.ViewMatriculaLabel_idPeriodo}"/>
+                    <h:outputText value="#{matriculaController.selected.idPeriodo}" title="#{bundle.ViewMatriculaTitle_idPeriodo}"/>
+                    <h:outputText value="#{bundle.ViewMatriculaLabel_idDisciplina}"/>
+                    <h:outputText value="#{matriculaController.selected.idDisciplina}" title="#{bundle.ViewMatriculaTitle_idDisciplina}"/>
+                    <h:outputText value="#{bundle.ViewMatriculaLabel_idCurso}"/>
+                    <h:outputText value="#{matriculaController.selected.idCurso}" title="#{bundle.ViewMatriculaTitle_idCurso}"/>
+                    <h:outputText value="#{bundle.ViewMatriculaLabel_idAluno}"/>
+                    <h:outputText value="#{matriculaController.selected.idAluno}" title="#{bundle.ViewMatriculaTitle_idAluno}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{matriculaController.destroyAndView}" value="#{bundle.ViewMatriculaDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMatriculaEditLink}"/>
+                <br />
+                <h:commandLink action="#{matriculaController.prepareCreate}" value="#{bundle.ViewMatriculaCreateLink}" />
+                <br />
+                <h:commandLink action="#{matriculaController.prepareList}" value="#{bundle.ViewMatriculaShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMatriculaIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

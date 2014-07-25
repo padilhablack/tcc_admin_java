@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewAulasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewAulasLabel_idAulas}"/>
+                    <h:outputText value="#{aulasController.selected.idAulas}" title="#{bundle.ViewAulasTitle_idAulas}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_data}"/>
+                    <h:outputText value="#{aulasController.selected.data}" title="#{bundle.ViewAulasTitle_data}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewAulasLabel_descricao}"/>
+                    <h:outputText value="#{aulasController.selected.descricao}" title="#{bundle.ViewAulasTitle_descricao}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_presenca}"/>
+                    <h:outputText value="#{aulasController.selected.presenca}" title="#{bundle.ViewAulasTitle_presenca}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_falta}"/>
+                    <h:outputText value="#{aulasController.selected.falta}" title="#{bundle.ViewAulasTitle_falta}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idTurma}"/>
+                    <h:outputText value="#{aulasController.selected.idTurma}" title="#{bundle.ViewAulasTitle_idTurma}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idProfessor}"/>
+                    <h:outputText value="#{aulasController.selected.idProfessor}" title="#{bundle.ViewAulasTitle_idProfessor}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idPeriodo}"/>
+                    <h:outputText value="#{aulasController.selected.idPeriodo}" title="#{bundle.ViewAulasTitle_idPeriodo}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idDisciplina}"/>
+                    <h:outputText value="#{aulasController.selected.idDisciplina}" title="#{bundle.ViewAulasTitle_idDisciplina}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idCurso}"/>
+                    <h:outputText value="#{aulasController.selected.idCurso}" title="#{bundle.ViewAulasTitle_idCurso}"/>
+                    <h:outputText value="#{bundle.ViewAulasLabel_idAluno}"/>
+                    <h:outputText value="#{aulasController.selected.idAluno}" title="#{bundle.ViewAulasTitle_idAluno}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{aulasController.destroyAndView}" value="#{bundle.ViewAulasDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewAulasEditLink}"/>
+                <br />
+                <h:commandLink action="#{aulasController.prepareCreate}" value="#{bundle.ViewAulasCreateLink}" />
+                <br />
+                <h:commandLink action="#{aulasController.prepareList}" value="#{bundle.ViewAulasShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewAulasIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

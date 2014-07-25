@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFinanceiroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListFinanceiroEmpty}" rendered="#{financeiroController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{financeiroController.items.rowCount > 0}">
+                    <h:outputText value="#{financeiroController.pagination.pageFirstItem + 1}..#{financeiroController.pagination.pageLastItem + 1}/#{financeiroController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{financeiroController.previous}" value="#{bundle.Previous} #{financeiroController.pagination.pageSize}" rendered="#{financeiroController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{financeiroController.next}" value="#{bundle.Next} #{financeiroController.pagination.pageSize}" rendered="#{financeiroController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{financeiroController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_idfinaceiro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idfinaceiro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_ano}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ano}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_mes}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mes}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_valor}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.valor}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_vencimento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.vencimento}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_status}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFinanceiroTitle_idAluno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAluno}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{financeiroController.prepareView}" value="#{bundle.ListFinanceiroViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{financeiroController.prepareEdit}" value="#{bundle.ListFinanceiroEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{financeiroController.destroy}" value="#{bundle.ListFinanceiroDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{financeiroController.prepareCreate}" value="#{bundle.ListFinanceiroCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListFinanceiroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

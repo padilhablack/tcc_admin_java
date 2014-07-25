@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNotasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                   <h:outputLabel value="#{bundle.CreateNotasLabel_data}" for="data" />
+                    <h:inputText id="data" value="#{notasController.selected.data}" title="#{bundle.CreateNotasTitle_data}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_titulo}" for="titulo" />
+                    <h:inputText id="titulo" value="#{notasController.selected.titulo}" title="#{bundle.CreateNotasTitle_titulo}" />
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_nota}" for="nota" />
+                    <h:inputText id="nota" value="#{notasController.selected.nota}" title="#{bundle.CreateNotasTitle_nota}" />
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_peso}" for="peso" />
+                    <h:inputText id="peso" value="#{notasController.selected.peso}" title="#{bundle.CreateNotasTitle_peso}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_peso}"/>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idTurma}" for="idTurma" />
+                    <h:selectOneMenu id="idTurma" value="#{notasController.selected.idTurma}" title="#{bundle.CreateNotasTitle_idTurma}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idTurma}">
+                        <f:selectItems value="#{turmaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idProfessor}" for="idProfessor" />
+                    <h:selectOneMenu id="idProfessor" value="#{notasController.selected.idProfessor}" title="#{bundle.CreateNotasTitle_idProfessor}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idProfessor}">
+                        <f:selectItems value="#{professorController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idPeriodo}" for="idPeriodo" />
+                    <h:selectOneMenu id="idPeriodo" value="#{notasController.selected.idPeriodo}" title="#{bundle.CreateNotasTitle_idPeriodo}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idPeriodo}">
+                        <f:selectItems value="#{periodoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idDisciplina}" for="idDisciplina" />
+                    <h:selectOneMenu id="idDisciplina" value="#{notasController.selected.idDisciplina}" title="#{bundle.CreateNotasTitle_idDisciplina}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idDisciplina}">
+                        <f:selectItems value="#{disciplinaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idCurso}" for="idCurso" />
+                    <h:selectOneMenu id="idCurso" value="#{notasController.selected.idCurso}" title="#{bundle.CreateNotasTitle_idCurso}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idCurso}">
+                        <f:selectItems value="#{cursoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idAluno}" for="idAluno" />
+                    <h:selectOneMenu id="idAluno" value="#{notasController.selected.idAluno}" title="#{bundle.CreateNotasTitle_idAluno}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idAluno}">
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{notasController.create}" value="#{bundle.CreateNotasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{notasController.prepareList}" value="#{bundle.CreateNotasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNotasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

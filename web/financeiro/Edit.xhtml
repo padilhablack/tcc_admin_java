@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditFinanceiroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_ano}" for="ano" />
+                    <h:inputText id="ano" value="#{financeiroController.selected.ano}" title="#{bundle.EditFinanceiroTitle_ano}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_ano}"/>
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_mes}" for="mes" />
+                    <h:inputText id="mes" value="#{financeiroController.selected.mes}" title="#{bundle.EditFinanceiroTitle_mes}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_mes}"/>
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_valor}" for="valor" />
+                    <h:inputText id="valor" value="#{financeiroController.selected.valor}" title="#{bundle.EditFinanceiroTitle_valor}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_valor}"/>
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_vencimento}" for="vencimento" />
+                    <h:inputText id="vencimento"  value="#{financeiroController.selected.vencimento}" title="#{bundle.EditFinanceiroTitle_vencimento}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_vencimento}">
+                        <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_status}" for="status" />
+                    <h:inputText id="status" value="#{financeiroController.selected.status}" title="#{bundle.EditFinanceiroTitle_status}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_status}"/>
+                    <h:outputLabel value="#{bundle.EditFinanceiroLabel_idAluno}" for="idAluno" />
+                    <h:selectOneMenu id="idAluno" value="#{financeiroController.selected.idAluno}" title="#{bundle.EditFinanceiroTitle_idAluno}" required="true" requiredMessage="#{bundle.EditFinanceiroRequiredMessage_idAluno}">
+                        <f:selectItems value="#{alunoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{financeiroController.update}" value="#{bundle.EditFinanceiroSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditFinanceiroViewLink}"/>
+                <br />
+                <h:commandLink action="#{financeiroController.prepareList}" value="#{bundle.EditFinanceiroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditFinanceiroIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
